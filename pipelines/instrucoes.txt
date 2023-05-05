@@ -1,0 +1,7 @@
+1) criar um novo repositorio no azure devops
+2) Criar um repositorio no github
+3) criar a nova pipeline
+4) editar a pipeline e ver rodando sozinha
+5) Falar sobre a diferenca entre hierarquias
+6) Pipelines > Stages > Jobs > Tasks (steps)
+7) DependsOn
