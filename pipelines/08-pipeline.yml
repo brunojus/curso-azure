@@ -1,0 +1,15 @@
+trigger:
+- master
+
+strategy:
+  matrix:
+    linux: 
+      operationSystem: 'ubuntu-latest'
+    mac:
+      operationSystem: 'macos-latest'
+pool:
+  vmImage: $(operationSystem)
+
+steps:
+- script: echo Running on $(operationSystem)!
+  displayName: 'R'
