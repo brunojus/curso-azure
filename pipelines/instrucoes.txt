@@ -5,3 +5,4 @@
 5) Falar sobre a diferenca entre hierarquias
 6) Pipelines > Stages > Jobs > Tasks (steps)
 7) DependsOn
+8) Falar sobre Stages
