@@ -6,7 +6,7 @@
 trigger:
 - main
 
-pool: AGU
+pool: 'MBP-de-Bruno'
 
 steps:
 - script: echo Hello, world!
