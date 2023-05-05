@@ -1,3 +1,4 @@
+# Show variables
 trigger:
 - master
 
@@ -17,8 +18,9 @@ stages:
     - bash: echo $(Build.SourcesDirectory)
     - bash: ls -R $(Build.DefaultWorkingDirectory)
     - bash: echo $(Build.ArtifactStagingDirectory)
-  - job: SecondJob
-    steps:
+
+  # - job: SecondJob
+  #   steps:
 #     - bash: echo Build SecondJob
 # - stage: DevDeploy
 #   variables: 
