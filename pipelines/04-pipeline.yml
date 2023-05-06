@@ -9,7 +9,6 @@ stages:
   jobs: 
   - job: FirstJob
     steps:
-<<<<<<< HEAD
     - bash: echo Build FirstJob
   - job: SecondJob
     steps:
@@ -31,6 +30,3 @@ stages:
   - job: ProdDeployJob
     steps:
     - bash: echo Build ProdDeployJob
-=======
-    - bash: echo Build FirstJob
->>>>>>> 00c813a6227edd85e30f57ddc9345072c93a4db2

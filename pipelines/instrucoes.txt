@@ -6,3 +6,8 @@
 6) Pipelines > Stages > Jobs > Tasks (steps)
 7) DependsOn
 8) Falar sobre Stages
+9) Falar sobre build docker images
+10) Falar sobre release (Relembrar a parte de artefatos)
+
+
+11) Azure devops generator 
