@@ -6,7 +6,7 @@
 trigger:
 - main
 
-pool: 'Azure Pipelines'
+pool: 'AGU'
 
 steps:
 - script: echo Hello, world!
