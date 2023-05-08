@@ -5,37 +5,27 @@ pool:
  vmImage: 'ubuntu-latest'
 
 # Pipeline > Stages > Jobs > Task (steps)
-jobs:
-- job: Job1
-  steps:
-  - script: echo Job1
-    displayName: 'Executar script de linha unica'
-  - script: |
-      echo Login realizado
-      echo DB salvo com sucesso
-    displayName: 'Autenticacao'
-- job: Job2
-  dependsOn: Job1
-  steps: 
-  - script: echo Run Job2
-    displayName: 'Job2'
 
-- job: Job3
-  dependsOn: Job2
-  steps: 
-  - script: echo Run Job3
-    displayName: 'Job3'
+stages:
+- stage: Build
+  jobs: 
+  - job: BuildImageDocker
+    steps:
+    - bash: echo BuildImageDocker
+  - job: PushImageDocker
+    steps:
+    - bash: echo Build SecondJob
 
-- job: Job4
-  dependsOn: Job3
-  steps: 
-  - script: echo Run Job4
-    displayName: 'Job4'
+- stage: DevDeploy
+  dependsOn: Build
+  jobs: 
+  - job: DevDeploy
+    steps:
+    - bash: echo Build FirstJob
 
-- job: Job5
-  dependsOn: 
-  - Job1
-  - Job2
-  steps: 
-  - script: echo Run Job5
-    displayName: 'Job5'
+- stage: TestDeploy
+  dependsOn: DevDeploy
+  jobs: 
+  - job: TestDeploy
+    steps:
+    - bash: echo Deploy Homologacao
