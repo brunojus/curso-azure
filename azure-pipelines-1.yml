@@ -6,6 +6,8 @@ pool:
 
 # Pipeline > Stages > Jobs > Task (steps)
 
+variables:
+  tag: '$(Build.BuildId)'
 stages:
 - stage: Build
   jobs: 
@@ -18,10 +20,10 @@ stages:
     - bash: echo $(Build.SourceBranchName)
     - bash: echo $(Build.SourcesDirectory)
 
-    - task: CopyFiles@2
+    - task: Docker@2
       inputs:
-        SourceFolder: $(Build.DefaultWorkingDirectory)
-        Contents: |
-         **/*.yaml
-         **/*.tf
-        TargetFolder: '$(Build.DefaultWorkingDirectory)/configuration'
+        containerRegistry: 'dockerhub'
+        repository: 'brunopraciano/curso-agu'
+        command: 'buildAndPush'
+        Dockerfile: '**/Dockerfile'
+        tags: '$(tag)'
