@@ -20,7 +20,7 @@ stages:
 
     - task: CopyFiles@2
       inputs:
-        SourceFolder: '$(Build.DefaultWorkingDirectory)'
+        SourceFolder: $(Build.DefaultWorkingDirectory)
         Contents: |
          **/*.yaml
          **/*.tf
