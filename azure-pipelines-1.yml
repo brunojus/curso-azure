@@ -13,6 +13,10 @@ stages:
     steps:
     - bash: echo BuildImageDocker
     - bash: echo $(PipelineLevelVariable)
+    - bash: echo $(Build.BuildNumber)
+    - bash: echo $(Build.BuildId)
+    - bash: echo $(Build.SourceBranchName)
+    - bash: echo $(Build.SourcesDirectory)
   - job: PushImageDocker
     steps:
     - bash: echo Build SecondJob
@@ -27,6 +31,7 @@ stages:
     - bash: echo $(environment)DeployJob
 
 - stage: TestDeploy
+  # condition: not[$(Build.SourceBranchName) == 'develop']
   variables:
     environment: QA
   dependsOn: DevDeploy
