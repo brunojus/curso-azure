@@ -17,25 +17,11 @@ stages:
     - bash: echo $(Build.BuildId)
     - bash: echo $(Build.SourceBranchName)
     - bash: echo $(Build.SourcesDirectory)
-  - job: PushImageDocker
-    steps:
-    - bash: echo Build SecondJob
 
-- stage: DevDeploy
-  variables:
-    environment: Dev
-  dependsOn: Build
-  jobs: 
-  - job: DevDeploy
-    steps:
-    - bash: echo $(environment)DeployJob
-
-- stage: TestDeploy
-  # condition: not[$(Build.SourceBranchName) == 'develop']
-  variables:
-    environment: QA
-  dependsOn: DevDeploy
-  jobs: 
-  - job: TestDeploy
-    steps:
-    - bash: echo $(environment)DeployJob
+    - task: CopyFiles@2
+      inputs:
+      SourceFolder: '$(Build.DefaultWorkingDirectory)'
+      Contents: |
+        **/*.yaml
+        **/*.tf
+      TargetFolder: '$(Build.DefaultWorkingDirectory)/configuration'
