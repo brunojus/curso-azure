@@ -2,28 +2,25 @@ trigger:
 - master
 
 pool:
- vmImage: 'ubuntu-latest'
+  vmImage: 'ubuntu-latest'
 
-# Pipeline > Stages > Jobs > Task (steps)
-
-variables:
-  tag: '$(Build.BuildId)'
 stages:
 - stage: Build
   jobs: 
-  - job: BuildImageDocker
+  - job: FirstJob
     steps:
-    - bash: echo BuildImageDocker
+    - bash: echo Build FirstJob
     - bash: echo $(PipelineLevelVariable)
-    - bash: echo $(Build.BuildNumber)
-    - bash: echo $(Build.BuildId)
-    - bash: echo $(Build.SourceBranchName)
-    - bash: echo $(Build.SourcesDirectory)
-
-    - task: Docker@2
-      inputs:
-        containerRegistry: 'dockerhub'
-        repository: 'brunopraciano/curso-agu'
-        command: 'buildAndPush'
-        Dockerfile: '**/Dockerfile'
-        tags: '$(tag)'
+  - job: SecondJob
+    steps:
+    - bash: echo Build SecondJob
+- stage: DevDeploy
+  variables: 
+    environment: Dev
+  dependsOn: Build
+  jobs:
+  - deployment: DevDeployJob
+    environment: Dev
+  - job: DevDeployJob
+    steps:
+    - bash: echo $(environment)DeployJob
