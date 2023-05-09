@@ -15,12 +15,21 @@ stages:
     steps:
     - bash: echo Build SecondJob
 - stage: DevDeploy
-  variables: 
-    environment: Dev
   dependsOn: Build
   jobs:
   - deployment: DevDeployJob
     environment: Dev
   - job: DevDeployJob11
     steps:
-    - bash: echo $(environment)DeployJob
+    - bash: echo DeployJob
+
+- stage: ProdDeploy
+  dependsOn: 
+  - Build
+  - DevDeploy
+  jobs:
+  - deployment: ProdDeployJob
+    environment: Prod
+  - job: ProdDeployJob
+    steps:
+    - bash: echo DeployJob
