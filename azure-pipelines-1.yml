@@ -28,7 +28,7 @@ stages:
   - Build
   - DevDeploy
   jobs:
-  - deployment: ProdDeployJob
+  - deployment: ProdDeployJobDeployment
     environment: Prod
   - job: ProdDeployJob
     steps:
